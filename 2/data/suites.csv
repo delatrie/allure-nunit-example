@@ -1,0 +1,8 @@
+"Status","Start Time","Stop Time","Duration in ms","Parent Suite","Suite","Sub Suite","Test Class","Test Method","Name","Description"
+"passed","Tue Oct 17 20:31:58 GMT 2023","Tue Oct 17 20:31:58 GMT 2023","38","","","","LabelTests","DeleteLabelTest","Create new label via API",""
+"failed","Tue Oct 17 20:31:58 GMT 2023","Tue Oct 17 20:31:58 GMT 2023","24","","","","LabelTests","AddLabelToExistingIssueByAuthorizedUser","Add label to existing issue by authorized user",""
+"failed","Tue Oct 17 20:31:58 GMT 2023","Tue Oct 17 20:31:58 GMT 2023","2","","","","LabelTests","DeleteExistingLabelByAuthorizedUser","Delete existing label by authorized user",""
+"passed","Tue Oct 17 20:31:58 GMT 2023","Tue Oct 17 20:31:58 GMT 2023","6","","","","MilestoneTests","CloseMilestoneByAuthorizedUser","Close existing milestone by authorized user",""
+"passed","Tue Oct 17 20:31:58 GMT 2023","Tue Oct 17 20:31:58 GMT 2023","3","","","","MilestoneTests","CreateNewMilestoneByAuthorizedUser","Create new milestone by authorized user",""
+"passed","Tue Oct 17 20:31:58 GMT 2023","Tue Oct 17 20:31:58 GMT 2023","10","","","","LabelTests","CreateNewLabelByAuthorizedUser","Create new label by authorized user",""
+"passed","Tue Oct 17 20:31:58 GMT 2023","Tue Oct 17 20:31:58 GMT 2023","2","","","","LabelTests","NewLabelTest","Create new label via API",""
