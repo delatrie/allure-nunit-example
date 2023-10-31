@@ -12,16 +12,27 @@ on:
 jobs:
     autotests:
         name: Run tests and generate Allure Report
+        strategy:
+            matrix:
+                framework: ["net7.0", "net6.0"]
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v4
   
-            - name: Set up .NET
+            - name: Set up .NET 7.0
               uses: actions/setup-dotnet@v3
               with:
                 dotnet-version: |
                     7.0.x
+              if: matrix.framework == "net7.0"
 
+            - name: Set up .NET 6.0
+              uses: actions/setup-dotnet@v3
+              with:
+                dotnet-version: |
+                    6.0.x
+              if: matrix.framework == "net6.0"
+                    
             - name: Restore NuGet packages
               run: dotnet restore --packages .packages ${{ env.SOLUTION_FILE }}
 
@@ -46,11 +57,3 @@ jobs:
               with:
                 allure_results: allure-results
                 allure_history: allure-history
-
-            - name: Deploy report to GitHub Pages
-              if: always()
-              uses: peaceiris/actions-gh-pages@v3
-              with:
-                github_token: ${{ secrets.GITHUB_TOKEN }}
-                publish_dir: allure-history
-                publish_branch: gh-pages
