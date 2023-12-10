@@ -12,22 +12,14 @@ on:
 jobs:
     autotests:
         name: Run tests and generate Allure Report
-        strategy:
-            matrix:
-                framework: ["net7.0", "net6.0"]
-                include:
-                  - framework: net7.0
-                    dotnet-version: 7.0.x
-                  - framework: net6.0
-                    dotnet-version: 6.0.x
-        runs-on: ubuntu-latest
+        runs-on: windows-latest
         steps:
             - uses: actions/checkout@v4
   
             - name: Set up .NET
               uses: actions/setup-dotnet@v3
               with:
-                dotnet-version: ${{ matrix.dotnet-version }}
+                dotnet-version: 4.8.x
 
             - name: Restore NuGet packages
               run: dotnet restore --packages .packages ${{ env.SOLUTION_FILE }}
