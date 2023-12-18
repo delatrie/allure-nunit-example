@@ -3,6 +3,7 @@ name: Allure Report
 env:
     SOLUTION_FILE: Allure.Examples.NUnit3.sln
     BUILD_CONFIGURATION: Debug
+    PROJECT_NAME: Allure.Examples.NUnit3
 
 on:
   push:
@@ -16,19 +17,32 @@ jobs:
         steps:
             - uses: actions/checkout@v4
   
-            - name: Set up .NET
-              uses: actions/setup-dotnet@v3
-              with:
-                dotnet-version: 4.8.x
+            - name: Set up MSBuild
+              uses: microsoft/setup-msbuild@v1
+
+            - name: Set up NuGet
+              uses: nuget/setup-nuget@v1
+
+            - name: Navigate to Workspace
+              run: cd $GITHUB_WORKSPACE
+
+            - name: Create Build Directory
+              run: mkdir _build
 
             - name: Restore NuGet packages
-              run: dotnet restore --packages .packages ${{ env.SOLUTION_FILE }}
+              run: |
+                nuget restore ${{ env.SOLUTION_FILE }}
 
             - name: Build solution
-              run: dotnet build --no-restore --configuration ${{ env.BUILD_CONFIGURATION }} ${{ env.SOLUTION_FILE }}
+              run: |
+                msbuild.exe ${{ env.SOLUTION_FILE }} /nologo /nr:false /p:OutputPath="bin\${{ env.BUILD_CONFIGURATION }}\net48" /p:platform="Any CPU" /p:configuration="${{ env.BUILD_CONFIGURATION }}"
 
             - name: Test solution
-              run: dotnet test --no-build --configuration ${{ env.BUILD_CONFIGURATION }} ${{ env.SOLUTION_FILE }}
+              uses: microsoft-approved-actions/vstest@master
+              with:
+                testAssembly: ${{ env.PROJECT_NAME }}.dll
+                searchFolder: ./tests/${{ env.PROJECT_NAME }}/bin/${{ env.BUILD_CONFIGURATION }}/net48
+                runInParallel: true
               continue-on-error: true
 
             - name: Get Allure history

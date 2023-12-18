@@ -1,73 +1,80 @@
-namespace Allure.Examples.NUnit3.RestAPITests;
+using System;
+using NUnit.Allure.Attributes;
+using NUnit.Allure.Core;
+using NUnit.Framework;
+using static Allure.Net.Commons.Steps.CoreStepsHelper;
 
-[AllureNUnit]
-[AllureLabel("layer", "rest")]
-[AllureFeature("Labels API")]
-class LabelTests
+namespace Allure.Examples.NUnit3.RestAPITests
 {
-    Random random;
-
-    [SetUp]
-    [AllureBefore("Setup API connection")]
-    public void Setup()
+    [AllureNUnit]
+    [AllureLabel("layer", "rest")]
+    [AllureFeature("Labels API")]
+    class LabelTests
     {
-        random = new Random();
-    }
+        Random random;
 
-    [TearDown]
-    [AllureAfter("Dispose API connection")]
-    public void Teardown() { }
+        [SetUp]
+        [AllureBefore("Setup API connection")]
+        public void Setup()
+        {
+            random = new Random();
+        }
 
-    [Test]
-    [AllureName("Create new label via API")]
-    [AllureTag("smoke")]
-    public void NewLabelTest()
-    {
-        PostNewLabel("hello");
-        AssertLabel("hello");
-    }
+        [TearDown]
+        [AllureAfter("Dispose API connection")]
+        public void Teardown() { }
 
-    [Test]
-    [AllureName("Create new label via API")]
-    [AllureTag("regress")]
-    public void DeleteLabelTest()
-    {
-        PostNewLabel("hello");
-        DeleteLabel("hello");
-        AssertNoLabel("hello");
-    }
+        [Test]
+        [AllureName("Create new label via API")]
+        [AllureTag("smoke")]
+        public void NewLabelTest()
+        {
+            PostNewLabel("hello");
+            AssertLabel("hello");
+        }
 
-    [AllureStep("When I create new label with title {title} via API")]
-    public void PostNewLabel(string title)
-    {
-        Step("GET /repos/:owner/:repo/labels?text=" + title);
-        Step("POST /repos/:owner/:repo/labels");
-    }
+        [Test]
+        [AllureName("Create new label via API")]
+        [AllureTag("regress")]
+        public void DeleteLabelTest()
+        {
+            PostNewLabel("hello");
+            DeleteLabel("hello");
+            AssertNoLabel("hello");
+        }
 
-    [AllureStep("And I delete label with title {title} via API")]
-    public void DeleteLabel(string title)
-    {
-        var labelId = FindLabelByTitle(title);
-        Step($"DELETE /repos/:owner/:repo/labels/{labelId}");
-    }
+        [AllureStep("When I create new label with title {title} via API")]
+        public void PostNewLabel(string title)
+        {
+            Step("GET /repos/:owner/:repo/labels?text=" + title);
+            Step("POST /repos/:owner/:repo/labels");
+        }
 
-    [AllureStep("Then I should see label with title {title} via api")]
-    public void AssertLabel(string title)
-    {
-        var labelId = FindLabelByTitle(title);
-        Step($"GET /repos/:owner/:repo/labels/{labelId}");
-    }
+        [AllureStep("And I delete label with title {title} via API")]
+        public void DeleteLabel(string title)
+        {
+            var labelId = FindLabelByTitle(title);
+            Step($"DELETE /repos/:owner/:repo/labels/{labelId}");
+        }
 
-    [AllureStep("Then I should not see label with title {title} via api")]
-    public void AssertNoLabel(string title)
-    {
-        var labelId = FindLabelByTitle(title);
-        Step($"GET /repos/:owner/:repo/labels/{labelId}");
-    }
+        [AllureStep("Then I should see label with title {title} via api")]
+        public void AssertLabel(string title)
+        {
+            var labelId = FindLabelByTitle(title);
+            Step($"GET /repos/:owner/:repo/labels/{labelId}");
+        }
 
-    int FindLabelByTitle(string title)
-    {
-        Step("GET /repos/:owner/:repo/labels?text=" + title);
-        return random.Next(1000);
+        [AllureStep("Then I should not see label with title {title} via api")]
+        public void AssertNoLabel(string title)
+        {
+            var labelId = FindLabelByTitle(title);
+            Step($"GET /repos/:owner/:repo/labels/{labelId}");
+        }
+
+        int FindLabelByTitle(string title)
+        {
+            Step("GET /repos/:owner/:repo/labels?text=" + title);
+            return random.Next(1000);
+        }
     }
 }
