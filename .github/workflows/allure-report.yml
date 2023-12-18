@@ -38,7 +38,7 @@ jobs:
                 msbuild.exe ${{ env.SOLUTION_FILE }} /nologo /nr:false /p:OutputPath="bin\${{ env.BUILD_CONFIGURATION }}\net48" /p:platform="Any CPU" /p:configuration="${{ env.BUILD_CONFIGURATION }}"
 
             - name: Test solution
-              uses: microsoft/vstest-action
+              uses: microsoft/vstest-action@v1
               with:
                 testAssembly: ${{ env.PROJECT_NAME }}.dll
                 searchFolder: ./tests/${{ env.PROJECT_NAME }}/bin/${{ env.BUILD_CONFIGURATION }}/net48
