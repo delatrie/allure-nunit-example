@@ -29,13 +29,17 @@ jobs:
 
             - name: Build solution
               run: |
-                msbuild.exe ${{ env.SOLUTION_FILE }} /nologo /nr:false /p:OutputPath="bin\${{ env.BUILD_CONFIGURATION }}\net48" /p:platform="Any CPU" /p:configuration="${{ env.BUILD_CONFIGURATION }}"
-
+                msbuild.exe ${{ env.SOLUTION_FILE }} /nologo /nr:false /p:OutputPath="bin\${{ env.BUILD_CONFIGURATION }}\net481" /p:platform="Any CPU" /p:configuration="${{ env.BUILD_CONFIGURATION }}"
+                
+            - name: View files
+              run: |
+                Get-ChildItem ./tests/${{ env.PROJECT_NAME }}/bin/${{ env.BUILD_CONFIGURATION }}/net481
+                
             - name: Test solution
               uses: microsoft/vstest-action@main
               with:
                 testAssembly: ${{ env.PROJECT_NAME }}.dll
-                searchFolder: ./tests/${{ env.PROJECT_NAME }}/bin/${{ env.BUILD_CONFIGURATION }}/net48
+                searchFolder: ./tests/${{ env.PROJECT_NAME }}/bin/${{ env.BUILD_CONFIGURATION }}/net481
                 runInParallel: true
               continue-on-error: true
 
