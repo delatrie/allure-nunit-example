@@ -105,7 +105,7 @@ namespace Allure.Examples.NUnit3.WebUITests
         }
 
         [AllureStep("Then I should not see label with title {labelTitle}")]
-        async Task AssertNoLabel(string labelTitle)
+        async Task AssertNoLabel(string? labelTitle)
         {
             await this.MaybeThrowAssertionException(
                 $"Label {labelTitle} still exists"
