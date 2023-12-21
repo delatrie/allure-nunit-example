@@ -2,7 +2,7 @@
 
 > This project aggregates Allure Javascript commons and reporters.
 
-<img src="https://allurereport.org/public/img/allure-report.svg" alt="Allure Report logo" style="width:136px;" align="right">
+<img src="https://allurereport.org/public/img/allure-report.svg" alt="Allure Report logo" align="right" style="width:8em;">
 
 - Learn more about Allure Report at https://allurereport.org
 - 📚 [Documentation](https://allurereport.org/docs/) – discover official documentation for Allure Report
