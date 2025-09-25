@@ -16,5 +16,4 @@ jobs:
         runs-on: windows-latest
         steps:
             - run: |
-                Install-Module VSSetup -Scope CurrentUser -Force
-                Get-VSSetupInstance | Select-VSSetupInstance -Latest | Format-List *
+                vswhere.exe -utf8 -format json -latest -property installationPath
