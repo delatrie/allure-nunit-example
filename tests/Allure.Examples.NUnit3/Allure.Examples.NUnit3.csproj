@@ -35,7 +35,10 @@
   </ItemGroup>
 
   <Target Name="CheckVars" BeforeTargets="GenerateNuspec" Inputs="@(NuGetPackInput)" Outputs="@(NuGetPackOutput)">
-        <Message Text="Hello, World!" Importance="high" />
+        <GetFrameworkSdkPath>
+          <Output TaskParameter="Path" PropertyName="WinSdkPath"></Output>
+        </GetFrameworkSdkPath>
+        <Message Text="Windows SDK path: '$(WinSdkPath)'" Importance="high" />
     </Target>
 
 </Project>
