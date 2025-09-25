@@ -16,6 +16,11 @@ jobs:
         runs-on: windows-latest
         steps:
             - uses: actions/checkout@v5
+            - uses: actions/setup-dotnet@v5
+              with:
+                dotnet-version: |
+                  - 8.x
+            - run: dotnet build
             - run: |
                 $SnExe = ./snexe.ps1
                 & $SnExe -vf ./tests/Allure.Examples.NUnit3/bin/Debug/net8.0/Allure.Examples.NUnit3.dll
