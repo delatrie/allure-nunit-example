@@ -22,4 +22,4 @@ jobs:
               with:
                   dotnet-version: |
                       8.x
-            - run: gci HKLM:\SOFTWARE\Microsoft\Windows SDKs\Windows
+            - run: gci "HKLM:\SOFTWARE\Microsoft\Windows SDKs\Windows"
