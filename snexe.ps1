@@ -16,6 +16,8 @@ if (-not (Test-Path -PathType Leaf $LaunchDevToolPath))
     Return
 }
 
+& $LaunchDevToolPath
+
 $SnExe = (Get-Command -CommandType Application -ErrorAction SilentlyContinue "sn.exe").Source
 If (-not $SnExe)
 {
