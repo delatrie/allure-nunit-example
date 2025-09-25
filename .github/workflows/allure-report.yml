@@ -16,4 +16,10 @@ jobs:
         runs-on: windows-latest
         steps:
             - run: |
-                vswhere.exe -latest -property installationPath
+                $VsInstallPath = vswhere.exe -latest -property installationPath
+                $LaunchDevToolPath = Join-Path $VsInstallPath 'Common7\Tools\Launch-VsDevShell.ps1'
+                If (Test-Path -PathType 'Leaf' $LaunchDevToolPath)
+                {
+                    & $LaunchDevToolPath
+                    Get-Command "sn.exe"
+                }
