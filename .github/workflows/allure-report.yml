@@ -16,4 +16,4 @@ jobs:
         runs-on: windows-latest
         steps:
             - run: |
-                vswhere.exe -?
+                vswhere.exe -utf8 -format json -latest
