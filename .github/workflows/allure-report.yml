@@ -17,5 +17,5 @@ jobs:
         steps:
             - uses: actions/checkout@v5
             - run: |
-                # $SnExe = ./snexe.ps1
-                sn.exe -vf ./tests/Allure.Examples.NUnit3/bin/Debug/net8.0/Allure.Examples.NUnit3.dll
+                $SnExe = ./snexe.ps1
+                & $SnExe -vf ./tests/Allure.Examples.NUnit3/bin/Debug/net8.0/Allure.Examples.NUnit3.dll
