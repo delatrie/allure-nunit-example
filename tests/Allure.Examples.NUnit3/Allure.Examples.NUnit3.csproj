@@ -6,6 +6,7 @@
     <IsTestProject>true</IsTestProject>
       <Nullable>enable</Nullable>
       <LangVersion>8</LangVersion>
+    <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <ItemGroup>
@@ -33,7 +34,7 @@
     </PackageReference>
   </ItemGroup>
 
-  <Target Name="AfterBuild">
+  <Target Name="CheckVars" BeforeTargets="GenerateNuspec" Inputs="@(NuGetPackInput)" Outputs="@(NuGetPackOutput)">
         <Message Text="Hello, World!" Importance="high" />
     </Target>
 
