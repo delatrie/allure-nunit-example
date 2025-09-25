@@ -17,4 +17,4 @@ jobs:
         steps:
             - run: |
                 write-host "10.0.26100.0"
-                gci "C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x64"
+                gci "C:\Program Files (x86)\Windows Kits\10\bin\10.0.26100.0\x86"
