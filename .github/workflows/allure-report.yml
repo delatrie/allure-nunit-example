@@ -22,4 +22,5 @@ jobs:
               with:
                   dotnet-version: |
                       8.x
-            - run: gci "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SDKs\Windows"
+            - run: |
+                Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SDKs\Windows\V10.0" -Name "InstallationFolder"
