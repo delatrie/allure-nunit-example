@@ -7,6 +7,9 @@
       <Nullable>enable</Nullable>
       <LangVersion>8</LangVersion>
     <IsPackable>true</IsPackable>
+    <SignAssembly>true</SignAssembly>
+    <AssemblyOriginatorKeyFile>$(MSBuildThisFileDirectory)identity-key-public.snk</AssemblyOriginatorKeyFile>
+    <PublicSign>true</PublicSign>
   </PropertyGroup>
 
   <ItemGroup>
