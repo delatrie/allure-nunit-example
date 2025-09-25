@@ -22,4 +22,4 @@ jobs:
               with:
                   dotnet-version: |
                       8.x
-            - run: dotnet build
+            - run: dotnet pack 
