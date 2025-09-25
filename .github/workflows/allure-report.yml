@@ -23,5 +23,4 @@ jobs:
                   dotnet-version: |
                       8.x
             - run: |
-                Get-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SDKs\Windows\V10.0"
-                Get-ChildItem -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SDKs\Windows\V10.0"
+                gci -file -recurse -filter "sn.exe" C:\Program Files (x86)\Windows Kits\10\
