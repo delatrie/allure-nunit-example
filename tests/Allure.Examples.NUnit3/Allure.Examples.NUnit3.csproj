@@ -33,4 +33,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <Target Name="AfterBuild">
+        <Message Text="Hello, World!" Importance="high" />
+    </Target>
+
 </Project>
