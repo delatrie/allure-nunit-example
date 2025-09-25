@@ -23,4 +23,5 @@ jobs:
                   dotnet-version: |
                       8.x
             - run: |
-                Get-ItemPropertyValue -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SDKs\Windows\V10.0" -Name "InstallationFolder"
+                Get-ItemProperty -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SDKs\Windows\V10.0"
+                Get-ChildItem -Path "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Microsoft SDKs\Windows\V10.0"
