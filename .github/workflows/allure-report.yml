@@ -27,4 +27,8 @@ jobs:
                 $LASTEXITCODE
                 & $SnExe -?
                 $LASTEXITCODE
+                & $SnExe -version
+                $LASTEXITCODE
+                where.exe $SnExe
+                $LASTEXITCODE
                 & $SnExe -vf ./tests/Allure.Examples.NUnit3/bin/Debug/net8.0/Allure.Examples.NUnit3.dll
