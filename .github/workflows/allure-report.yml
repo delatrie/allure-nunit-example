@@ -23,4 +23,8 @@ jobs:
             - run: dotnet build
             - run: |
                 $SnExe = ./snexe.ps1
+                & $SnExe
+                $LASTEXITCODE
+                & $SnExe -?
+                $LASTEXITCODE
                 & $SnExe -vf ./tests/Allure.Examples.NUnit3/bin/Debug/net8.0/Allure.Examples.NUnit3.dll
