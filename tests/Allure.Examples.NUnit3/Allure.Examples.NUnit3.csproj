@@ -34,6 +34,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Allure.NUnit" Version="2.14.1">
   </ItemGroup>
 
   <Target Name="CheckVars" BeforeTargets="GenerateNuspec" Inputs="@(NuGetPackInput)" Outputs="@(NuGetPackOutput)">
