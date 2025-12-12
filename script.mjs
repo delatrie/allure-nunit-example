@@ -20,8 +20,10 @@ await new Promise((resolve) => {
       return /(?<ppid>\d+)\s+(?<pid>\d+)\s+(?<comm>.*)/.exec(line);
     }).filter(Boolean).forEach(([,ppid, pid, comm]) => {
       console.log(`ppid=${ppid},pid=${pid},comm=${comm}`);
+      if (comm.endsWith("...")) {
+        console.log("bad");
+      }
     });
-    console.log(stdout.join("").split(/\r|\n|\r\n/));
     resolve();
   });
 });
