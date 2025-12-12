@@ -16,7 +16,7 @@ proc.stdout.setEncoding("utf-8").on("data", (data) => { stdout.push(data); });
 proc.stderr.setEncoding("utf-8").on("data", (data) => { stderr.push(data); });
 await new Promise((resolve) => {
   proc.on("exit", (code, signal) => {
-    console.log(stdout.join("").split(/(\r?\n)/));
+    console.log(stdout.join("").split(/\r|\n|\r\n/));
     resolve();
   });
 });
