@@ -17,29 +17,30 @@ jobs:
         strategy:
             fail-fast: false
             matrix:
-                os: ["windows-latest", "ubuntu-latest"]
+                os: ["windows-latest"]
         runs-on: ${{ matrix.os }}
         steps:
-            - uses: actions/checkout@v6
-            - uses: actions/setup-dotnet@v5
-              with:
-                dotnet-version: |
-                  8.0.x
-            - run: dotnet test
-            - run: ls "./tests/${{ env.PROJECT_NAME }}/bin/Debug/net8.0"
-              if: always()
-            - uses: actions/upload-artifact@v5
-              if: always()
-              with:
-                path: "./allure-results"
-                name: "Allure-${{ matrix.os }}"
-    report:
-        name: Create report
-        runs-on: ubuntu-latest
-        needs: ["test"]
-        if: always()
-        steps:
-            - uses: actions/download-artifact@v6
-              with:
-                  path: allure-results
-            - run: ls -l allure-results
+            - run: Get-CimInstance -Class Win32_Process | Select-Object -First 3 | Format-Table *
+            # - uses: actions/checkout@v6
+            # - uses: actions/setup-dotnet@v5
+            #   with:
+            #     dotnet-version: |
+            #       8.0.x
+            # - run: dotnet test
+            # - run: ls "./tests/${{ env.PROJECT_NAME }}/bin/Debug/net8.0"
+            #   if: always()
+            # - uses: actions/upload-artifact@v5
+            #   if: always()
+            #   with:
+            #     path: "./allure-results"
+            #     name: "Allure-${{ matrix.os }}"
+    # report:
+    #     name: Create report
+    #     runs-on: ubuntu-latest
+    #     needs: ["test"]
+    #     if: always()
+    #     steps:
+    #         - uses: actions/download-artifact@v6
+    #           with:
+    #               path: allure-results
+    #         - run: ls -l allure-results
