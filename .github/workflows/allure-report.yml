@@ -20,7 +20,7 @@ jobs:
                 os: ["windows-latest"]
         runs-on: ${{ matrix.os }}
         steps:
-            - run: Get-CimInstance -Class Win32_Process | Format-Table ProcessId,ParentProcessId,Status,ExecutionState,ExecutablePath
+            - run: Get-CimInstance -Class Win32_Process | Format-Table ProcessId,ParentProcessId,ExecutablePath
             # - uses: actions/checkout@v6
             # - uses: actions/setup-dotnet@v5
             #   with:
