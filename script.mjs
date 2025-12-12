@@ -8,7 +8,7 @@ const args = [
   "-NoProfile",
   "-NonInteractive",
   "-Command",
-  "& { [System.Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($False, $False); Write-Output '♪♪♪'; Get-CimInstance -Class Win32_Process | Select-Object @{ n='ppid'; e={ $_.ParentProcessId } },@{ n='pid'; e={ $_.ProcessId } },@{ n='comm'; e={ $_.ExecutablePath } } | Format-Table ppid,pid,comm }",
+  "& { [System.Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($False, $False); Write-Output '♪♪♪'; Get-CimInstance -Class Win32_Process | Select-Object @{ n='ppid'; e={ $_.ParentProcessId } },@{ n='pid'; e={ $_.ProcessId } },@{ n='comm'; e={ $_.ExecutablePath } } | Format-Table -AutoSize ppid,pid,comm }",
 ];
 
 const proc = spawn("powershell.exe", args, { stdio: ["ignore", "pipe", "pipe"], shell: false, timeout: 20000 });
@@ -19,7 +19,7 @@ await new Promise((resolve) => {
     console.log("exit code", code);
     console.log("signal", signal);
     console.log("stdout:");
-    console.log(stdout.join("").replace("\n", "|\n"));
+    console.log(stdout.join("").replace(/(\r?\n)/, "|$1"));
     console.log("stderr:");
     console.log(stderr.join(""));
     resolve();
