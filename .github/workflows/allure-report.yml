@@ -20,7 +20,7 @@ jobs:
                 os: ["windows-latest"]
         runs-on: ${{ matrix.os }}
         steps:
-            - run: Get-CimInstance -Class Win32_Process | Select-Object -First 3 | Format-Table *
+            - run: Get-CimInstance -Class Win32_Process | Select-Object -First 3 | Format-List *
             # - uses: actions/checkout@v6
             # - uses: actions/setup-dotnet@v5
             #   with:
