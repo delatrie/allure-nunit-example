@@ -19,7 +19,7 @@ await new Promise((resolve) => {
     console.log("exit code", code);
     console.log("signal", signal);
     console.log("stdout:");
-    console.log(stdout.join(""));
+    console.log(stdout.join("").replace("\n", "|\n"));
     console.log("stderr:");
     console.log(stderr.join(""));
     resolve();
