@@ -16,6 +16,11 @@ proc.stdout.setEncoding("utf-8").on("data", (data) => { stdout.push(data); });
 proc.stderr.setEncoding("utf-8").on("data", (data) => { stderr.push(data); });
 await new Promise((resolve) => {
   proc.on("exit", (code, signal) => {
+    stdout.join("").split(/\r|\n|\r\n/).map((line) => {
+      return /(?<ppid>\d+)\s+(?<pid>\d+)\s+(?<comm>.*)/.exec(line);
+    }).filter(Boolean).forEach(([,ppid, pid, comm]) => {
+      console.log(`ppid=${ppid},pid=${pid},comm=${comm}`);
+    });
     console.log(stdout.join("").split(/\r|\n|\r\n/));
     resolve();
   });
