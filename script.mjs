@@ -8,7 +8,7 @@ const args = [
   "-NoProfile",
   "-NonInteractive",
   "-Command",
-  "& { [System.Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($False, $False); Get-CimInstance -Class Win32_Process | Select-Object @{ n='ppid'; e={ $_.ParentProcessId } },@{ n='pid'; e={ $_.ProcessId } },@{ n='comm'; e={ $_.ExecutablePath } } | Format-Table -AutoSize ppid,pid,comm }",
+  "& { [System.Console]::OutputEncoding = [System.Text.UTF8Encoding]::new($False, $False); Get-CimInstance -Class Win32_Process | ForEach-Object { "$($_.ParentProcessId) $($_.ProcessId) $($_.ExecutablePath)" } }",
 ];
 
 const proc = spawn("powershell.exe", args, { stdio: ["ignore", "pipe", "pipe"], shell: false, timeout: 20000 });
